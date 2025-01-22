@@ -17,7 +17,7 @@ require_once plugin_dir_path( __FILE__ ) . 'includes/class-lane-gf-utm-params.ph
 
 // Initialize the plugin
 add_action( 'plugins_loaded', function() {
-	if ( class_exists( 'GFForms' ) ) {
+    if ( class_exists( 'GFForms' ) ) {
 
         $current_version = GFForms::$version;
         $required_version = '2.4.7'; // See: https://docs.gravityforms.com/how-to-add-field-to-form-using-gfapi/
@@ -26,13 +26,12 @@ add_action( 'plugins_loaded', function() {
         if (version_compare($current_version, $required_version, '<')) {
             add_action('admin_notices', function () use ($current_version, $required_version) {
                 echo '<div class="notice notice-error">
-                        <p><strong>Gravity Forms Version Issue:</strong> Your Gravity Forms version (' . esc_html($current_version) . ') is outdated. Please update to at least version ' .  esc_html($required_version) . ' to ensure compatibility.</p>
-                      </div>';
+                        <p><strong>Gravity Forms Version Issue:</strong> Your Gravity Forms version (' . esc_html($current_version) . ') is outdated. Please update to at least version ' .  esc_html($required_version) . ' to ensure compatibility.</p></div>';
             });
         }
         else {
             Lane_GF_UTM_Params::get_instance();
         }
 
-	}
+    }
 });
