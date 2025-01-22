@@ -11,8 +11,8 @@ class Lane_GF_UTM_Params {
 
     private array $utm_params = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
 
-	private function __construct() {
-        
+    private function __construct() {
+
         if (!session_id()) {
             session_start();
         }
@@ -35,7 +35,7 @@ class Lane_GF_UTM_Params {
             add_filter( 'gform_field_value_' . $this->get_param_field_name($param),  [ $this, 'prepopulate_field_value' ] );
         }
 
-	}
+    }
 
     /**
      * @param $value
@@ -143,16 +143,6 @@ class Lane_GF_UTM_Params {
         }
 
         return $form;
-    }
-
-    /**
-     * @param $form_id
-     * @return bool
-     * Helper function to check if UTM tracking is enabled for a specific form
-     */
-    public function is_lane_gf_utm_params_enabled($form_id) {
-        $form = GFAPI::get_form($form_id);
-        return rgar($form, 'lane_gf_utm_params_enabled') === '1';
     }
 
     /**
